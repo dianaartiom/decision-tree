@@ -3,10 +3,9 @@ rm(list=ls())
 library("caret")
 library(rpart)
 library(rpart.plot)
-set.seed(3456)
 
 # Sets working directory
-setwd("/home/diana/Documents/activity-6")
+setwd("/Users/vitiok/University/IS/decision-tree")
 
 nrOfFolds <- 5
 
@@ -50,7 +49,7 @@ for (fold in partitions) {
   
   # Calculate the % of hits over all the partitions
   sum = sum(prediction == testData[["Churn"]])
-  print(sum/666)
+  print(sum / length(testData[["Churn"]]))
 }
 
 
