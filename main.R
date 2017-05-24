@@ -85,27 +85,3 @@ print("========================= Third =============================")
 model <- rpart(formula, data);
 prp(model)
 rpart.plot(model)
-
-# Check for length of columns to prove everything is working properly
-length(trainingData_1[, 1])
-length(testData_1[, 1])
-
-
-data
-data <- as.data.frame(data)
-#data <- as.matrix.data.frame(data)
-data.frame
-# is this the model ?
-model <- rpart(Churn ~ State + AccountLength + AreaCode + IntlPlan + VMailPlan + VMailMessage + DayMins + DayCalls + DayCharge + EveMins + EveCalls + EveCharge + NightMins + NightCalls + NightCharge + IntlMins + IntlCalls + IntlCharge + CustServCalls , data=trainingData_1)
-rpart.plot(model)
-
-# takes the model we build and what//? test sau careva data?
-prediction = predict(model, testData_1, type="class")
-prediction
-length(prediction)
-
-testData_1[["Churn"]]
-
-
-sum = sum(prediction == testData_1[["Churn"]])
-print(sum/666)
