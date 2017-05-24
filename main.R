@@ -71,12 +71,17 @@ for(j in minsplitVas) {
     # Create decision tree model from the formula and data given as data.frame
     model <- rpart(formula, trainData, minsplit=j);
     
+    # plot trees
+    prp(model)
+    rpart.plot(model)
+
     # Predict data based on the build linear model
     prediction <- predict(model, testData, type="class");
     
-    # Calculate the % of hits over all the partitions
+    # Calculate the nr of hits over all the partitions
     sum = sum(prediction == testData[["Churn"]])
-    print(sum/666)
+    # print the percentage
+    print(sum/(length(testData)))
   }
 }
 
