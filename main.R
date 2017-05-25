@@ -15,19 +15,19 @@ data <- read.csv(file="churn.csv", header=TRUE, sep=",")
 # remove the Phone column
 data[["Phone"]] <- NULL
 
-partitions <- createMultiFolds(y=data[, "Churn"], k=nrOfFolds, 1)
+# This variable holds the column name we want to create model upon on 
+attributeToWorkWith <- "Churn";
+
+partitions <- createMultiFolds(y=data[, attributeToWorkWith], k=nrOfFolds, 1)
 
 
 # create a vector with all indexes of data
-indexesOfInitialData <- c(1:length(data[, 1]))
+indexesOfInitialData <- c(1:length(data[, attributeToWorkWith]))
 
 # Find variables needed for creating linear model
 factors <- c(names(data));
 
-# This variable holds the column name we want to create model upon on 
-attributeToWorkWith <- "Churn";
-
-# Remove strength column... To avoid worning with lm() 
+# Remove Churn column... To avoid worning with lm() 
 factors <- factors[factors != attributeToWorkWith];
 
 formula <- as.formula(paste("Churn ~", paste(factors, collapse="+")));
