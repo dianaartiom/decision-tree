@@ -15,7 +15,8 @@ data <- read.csv(file="churn.csv", header=TRUE, sep=",")
 # remove the Phone column
 data[["Phone"]] <- NULL
 
-partitions <- createMultiFolds(y=data[, 1], k=nrOfFolds, 1)
+partitions <- createMultiFolds(y=data[, "Churn"], k=nrOfFolds, 1)
+
 
 # create a vector with all indexes of data
 indexesOfInitialData <- c(1:length(data[, 1]))
@@ -55,7 +56,7 @@ for (fold in partitions) {
 
 print("========================= Second =============================")
 minsplitVas = c(1, 50, 100);
-for(j in minsplitVas) {
+for (j in minsplitVas) {
   print(j)
   # sprintf("For j = %s", j )
   for (fold in partitions) {
@@ -81,7 +82,7 @@ for(j in minsplitVas) {
     # Calculate the nr of hits over all the partitions
     sum = sum(prediction == testData[["Churn"]])
     # print the percentage
-    print(sum/(length(testData)))
+    print(sum / length(testData[["Churn"]]))
   }
 }
 
